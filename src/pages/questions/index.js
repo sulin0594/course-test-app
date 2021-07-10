@@ -2,17 +2,10 @@ import { Form, Select, Input, message, Upload, Button } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Component } from 'react';
 import Drawer from '../../components/layer/drawer'
-
 import { QuestionApi, FileApi } from '../../api';
 
 const { Option } = Select;
 const { TextArea } = Input;
-
-// function getBase64(img, callback) {
-//   const reader = new FileReader();
-//   reader.addEventListener('load', () => callback(reader.result));
-//   reader.readAsDataURL(img);
-// }
 
 function beforeUpload(file) {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -30,6 +23,7 @@ class QuestionCreation extends Component {
   state = {
     loading: false,
     questionImage: '',
+
   };
   drawerRef;
 
@@ -56,7 +50,13 @@ class QuestionCreation extends Component {
       questionImage: this.state.questionImage,
       questionImageAnswer: answerImageResp?.fileDownloadUri
     });
-    console.log(resp);
+    if (resp.success) {
+      this.navigateToTestPage(resp.data);
+    }
+  }
+
+  navigateToTestPage = async (questionId) => {
+    this.props.history.push(`/test/${questionId}`);
   }
 
   render() {
@@ -104,13 +104,13 @@ class QuestionCreation extends Component {
                 {questionImage ? <img src={questionImage} alt="file" style={{ width: '100%' }} /> : uploadButton}
               </Upload>
             </Form.Item>
+            <Drawer image={questionImage} ref={(drawer) => { this.drawerRef = drawer; }} />
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
             </Form.Item>
           </Form>
-          <Drawer image={questionImage} ref={(drawer) => { this.drawerRef = drawer; }} />
         </div>
       </div >
     )

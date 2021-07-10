@@ -10,4 +10,13 @@ export class QuestionApi {
         console.log(error);
       });
   }
+  static getQuestion = async (questionId) => {
+    return client.get(`/questions/${questionId}`)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 }

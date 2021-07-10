@@ -4,7 +4,7 @@ const serverUrl = 'http://localhost:6001'
 
 const client = axios.create({
   baseURL: serverUrl,
-  timeout: 10000,
+  timeout: 30000,
   headers: { 'Content-Type': 'application/json' }
 });
 
