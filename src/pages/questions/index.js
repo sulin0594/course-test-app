@@ -45,7 +45,7 @@ class QuestionCreation extends Component {
   onFinish = async (values) => {
     const answerImageResp = await FileApi.uploadFileData({ data: this.drawerRef.stageRef.toDataURL() });
     const resp = await QuestionApi.createQuestion({
-      couseId: values.course,
+      courseId: new Number(values.course),
       content: values.content,
       questionImage: this.state.questionImage,
       questionImageAnswer: answerImageResp?.fileDownloadUri
@@ -83,13 +83,13 @@ class QuestionCreation extends Component {
               rules={[{ required: true, message: 'Please select course!' }]}
             >
               <Select style={{ width: 120 }}>
-                <Option value="001">课程1</Option>
-                <Option value="002">课程2</Option>
-                <Option value="003">课程3</Option>
+                <Option value="1001001">课程1</Option>
+                <Option value="1001002">课程2</Option>
+                <Option value="1001003">课程3</Option>
               </Select>
             </Form.Item>
             <Form.Item label="问题内容" name="content" rules={[{ required: true, message: 'Please select course!' }]}>
-              <TextArea rows={4} />
+              <TextArea rows={4} showCount maxLength={200} />
             </Form.Item>
             <Form.Item label="上传图片" name="image" rules={[{ required: true, message: 'Please upload image!' }]}>
               <Upload
