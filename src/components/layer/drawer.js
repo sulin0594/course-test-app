@@ -69,17 +69,19 @@ class Drawer extends Component {
     const { lines, tool } = this.state;
     return (
       <div>
-        <select
-          value={tool}
-          onChange={(e) => {
-            this.setState({ tool: e.target.value });
-          }}
-        >
-          <option value="pen">Pen</option>
-          <option value="eraser">Eraser</option>
-        </select>
-        <button text="undo" onClick={this.handleUndo}>undo</button>
-        <button text="redo" x={40} onClick={this.handleRedo}>redo</button>
+        <div style={{ height: '28px', textAlign: 'right' }}>
+          <select
+            value={tool}
+            onChange={(e) => {
+              this.setState({ tool: e.target.value });
+            }}
+          >
+            <option value="pen">Pen</option>
+            <option value="eraser">Eraser</option>
+          </select>
+          <button text="undo" onClick={this.handleUndo}>undo</button>
+          <button text="redo" x={40} onClick={this.handleRedo}>redo</button>
+        </div>
         <Stage
           width={900}
           height={600}

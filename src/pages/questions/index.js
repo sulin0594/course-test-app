@@ -1,8 +1,10 @@
 import { Form, Select, Input, message, Upload, Button } from 'antd';
+import { Row, Col } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Component } from 'react';
 import Drawer from '../../components/layer/drawer'
 import { QuestionApi, FileApi } from '../../api';
+import './question.css';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -68,21 +70,25 @@ class QuestionCreation extends Component {
       </div>
     );
     return (
-      <div>
+      <div className="questions">
         <div className="logo">
-          <h2>The University of Hong Kong</h2>
+          <div className="logo-image"></div>
+          <h2 className="header">The University of Hong Kong</h2>
         </div>
         <div>
+          <div className="title">请设置问题和答案: </div>
           <Form
             name="basic"
             onFinish={this.onFinish}
+            labelCol={{ span: 4 }}
+            wrapperCol={{ span: 16 }}
           >
             <Form.Item
               label="课程"
               name="course"
               rules={[{ required: true, message: 'Please select course!' }]}
             >
-              <Select style={{ width: 120 }}>
+              <Select style={{ width: 160 }}>
                 <Option value="1001001">课程1</Option>
                 <Option value="1001002">课程2</Option>
                 <Option value="1001003">课程3</Option>
@@ -104,11 +110,14 @@ class QuestionCreation extends Component {
                 {questionImage ? <img src={questionImage} alt="file" style={{ width: '100%' }} /> : uploadButton}
               </Upload>
             </Form.Item>
-            <Drawer image={questionImage} ref={(drawer) => { this.drawerRef = drawer; }} />
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
+            {questionImage ? <>
+              <Row>
+                <Col span={4} style={{ textAlign: 'right' }}>请绘制答案: </Col>
+                <Drawer image={questionImage} ref={(drawer) => { this.drawerRef = drawer; }} />
+              </Row>
+            </> : <></>}
+            <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
+              <Button type="primary" htmlType="submit">Submit</Button>
             </Form.Item>
           </Form>
         </div>

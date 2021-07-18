@@ -10,4 +10,14 @@ export class AnswerApi {
         console.log(error);
       });
   }
+
+  static getAnswer = async (studentId, questionId) => {
+    return client.get(`/answers/${studentId}/${questionId}`)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 }

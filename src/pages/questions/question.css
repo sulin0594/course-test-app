@@ -1,0 +1,23 @@
+.questions .logo {
+  height: 60px;
+}
+
+.questions .logo .logo-image {
+  height: 60px;
+  width: 60px;
+  background-image: url('../../logo.png');
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  float: left;
+}
+
+.questions .logo .header {
+  line-height: 60px;
+  padding-left: 80px;
+}
+
+.questions .title{
+  font-size: 18px;
+  font-weight: 600;
+  padding: 30px 0;
+}
