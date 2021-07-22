@@ -76,7 +76,7 @@ class QuestionCreation extends Component {
           <h2 className="header">The University of Hong Kong</h2>
         </div>
         <div>
-          <div className="title">请设置问题和答案: </div>
+          <div className="title">Please set your question: </div>
           <Form
             name="basic"
             onFinish={this.onFinish}
@@ -84,20 +84,20 @@ class QuestionCreation extends Component {
             wrapperCol={{ span: 16 }}
           >
             <Form.Item
-              label="课程"
+              label="Course Name"
               name="course"
               rules={[{ required: true, message: 'Please select course!' }]}
             >
               <Select style={{ width: 160 }}>
-                <Option value="1001001">课程1</Option>
-                <Option value="1001002">课程2</Option>
-                <Option value="1001003">课程3</Option>
+                <Option value="1001001">ELEC6002</Option>
+                <Option value="1001002">ELEC6003</Option>
+                <Option value="1001003">ELEC6004</Option>
               </Select>
             </Form.Item>
-            <Form.Item label="问题内容" name="content" rules={[{ required: true, message: 'Please select course!' }]}>
+            <Form.Item label="Set question content"  name="content" rules={[{ required: true, message: 'Please select course!' }]}>
               <TextArea rows={4} showCount maxLength={200} />
             </Form.Item>
-            <Form.Item label="上传图片" name="image" rules={[{ required: true, message: 'Please upload image!' }]}>
+            <Form.Item label="Upload question image" name="image" rules={[{ required: true, message: 'Please upload image!' }]}>
               <Upload
                 name="file"
                 listType="picture-card"
@@ -112,7 +112,7 @@ class QuestionCreation extends Component {
             </Form.Item>
             {questionImage ? <>
               <Row>
-                <Col span={4} style={{ textAlign: 'right' }}>请绘制答案: </Col>
+                <Col span={4} style={{ textAlign: 'right' }}>Please draw correct answer: </Col>
                 <Drawer image={questionImage} ref={(drawer) => { this.drawerRef = drawer; }} />
               </Row>
             </> : <></>}
