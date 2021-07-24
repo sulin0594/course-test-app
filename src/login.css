@@ -1,0 +1,47 @@
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login .loginPanel {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.login .loginPanel .loginForm {
+  width: 500px;
+}
+
+.loginPanel .logo {
+  height: 80px;
+  margin-bottom: 30px;
+}
+
+.loginPanel .logo .logo-image {
+  height: 80px;
+  width: 80px;
+  background-image: url('./logo.png');
+  background-repeat: no-repeat;
+  background-size: 80px 80px;
+  float: left;
+}
+
+.loginPanel .logo .header {
+  line-height: 80px;
+  padding-left: 100px;
+}
+
+.loginPanel .loginForm{
+  max-width: 500px;
+}
+
+.loginForm .login-form-forgot {
+  float: right;
+}
+
+.loginForm .login-form-button {
+  width: 100%;
+}

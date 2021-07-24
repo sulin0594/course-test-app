@@ -23,7 +23,7 @@ class QuestionTest extends Component {
 
   loadQuestion = async (id) => {
     const resp = await QuestionApi.getQuestion(id);
-    this.setState({ ...resp.data });
+    this.setState({ ...resp?.data });
   }
 
   onFinish = async (values) => {

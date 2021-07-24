@@ -1,8 +1,8 @@
-import { client } from "./base";
+import { client, getUserId } from "./base";
 
 export class AnswerApi {
   static answer = async (studentId, questionId, answer) => {
-    return client.post(`/answers/${studentId}/${questionId}`, answer)
+    return client.post(`/answers/${getUserId()}/${questionId}`, answer)
       .then(function (response) {
         return response.data;
       })
@@ -12,7 +12,7 @@ export class AnswerApi {
   }
 
   static getAnswer = async (studentId, questionId) => {
-    return client.get(`/answers/${studentId}/${questionId}`)
+    return client.get(`/answers/${getUserId()}/${questionId}`)
       .then(function (response) {
         return response.data;
       })

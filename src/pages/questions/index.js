@@ -1,4 +1,4 @@
-import { Form, Select, Input, message, Upload, Button } from 'antd';
+import { Form, Select, Input, message, Upload, Button, Modal } from 'antd';
 import { Row, Col } from 'antd';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { Component } from 'react';
@@ -25,7 +25,7 @@ class QuestionCreation extends Component {
   state = {
     loading: false,
     questionImage: '',
-
+    isModalVisible: false,
   };
   drawerRef;
 
@@ -53,12 +53,27 @@ class QuestionCreation extends Component {
       questionImageAnswer: answerImageResp?.fileDownloadUri
     });
     if (resp.success) {
-      this.navigateToTestPage(resp.data);
+      // this.navigateToTestPage(resp.data);
+      this.setState({ isModalVisible: true });
     }
+  }
+
+  handleOk = () => {
+    this.setState({ isModalVisible: false });
+    window.location.reload();
+  };
+
+  handleCancel = () => {
+    this.setState({ isModalVisible: false });
+    this.navigateToHomePage();
   }
 
   navigateToTestPage = async (questionId) => {
     this.props.history.push(`/test/${questionId}`);
+  }
+
+  navigateToHomePage = async (questionId) => {
+    this.props.history.push(`/home`);
   }
 
   render() {
@@ -121,6 +136,9 @@ class QuestionCreation extends Component {
             </Form.Item>
           </Form>
         </div>
+        <Modal title="创建成功" okText="下一道题" visible={this.state.isModalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
+          <p>上传题目成功, 是否继续新建题目?</p>
+        </Modal>
       </div >
     )
   }

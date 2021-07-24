@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Login from './login';
 import reportWebVitals from './reportWebVitals';
+
+const isLoggedIn = window.sessionStorage.getItem('accessToken');
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {isLoggedIn ? <App /> : <Login />}
   </React.StrictMode>,
   document.getElementById('root')
 );
