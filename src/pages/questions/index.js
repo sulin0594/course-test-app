@@ -1,6 +1,6 @@
 import { Form, Select, Input, message, Upload, Button, Modal } from 'antd';
 import { Row, Col } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { LoadingOutlined, PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { Component } from 'react';
 import Drawer from '../../components/layer/drawer'
 import { QuestionApi, FileApi } from '../../api';
@@ -76,6 +76,10 @@ class QuestionCreation extends Component {
     this.props.history.push(`/home`);
   }
 
+  back = async () => {
+    this.props.history.goBack();
+  }
+
   render() {
     const { loading, questionImage } = this.state;
     const uploadButton = (
@@ -86,11 +90,10 @@ class QuestionCreation extends Component {
     );
     return (
       <div className="questions">
-        <div className="logo">
-          <div className="logo-image"></div>
-          <h2 className="header">The University of Hong Kong</h2>
+        <div className="header">
+          <ArrowLeftOutlined onClick={this.back} />
         </div>
-        <div>
+        <div className="content">
           <div className="title">Please set your question: </div>
           <Form
             name="basic"
@@ -109,7 +112,7 @@ class QuestionCreation extends Component {
                 <Option value="1001003">ELEC6004</Option>
               </Select>
             </Form.Item>
-            <Form.Item label="Set question content"  name="content" rules={[{ required: true, message: 'Please select course!' }]}>
+            <Form.Item label="Set question content" name="content" rules={[{ required: true, message: 'Please select course!' }]}>
               <TextArea rows={4} showCount maxLength={200} />
             </Form.Item>
             <Form.Item label="Upload question image" name="image" rules={[{ required: true, message: 'Please upload image!' }]}>

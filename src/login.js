@@ -11,11 +11,7 @@ function Login() {
     const loginResult = await LoginApi.login(values);
     if (loginResult.success) {
       window.sessionStorage.setItem('accessToken', loginResult.data);
-      if (values.role === 'student') {
-        window.location.href = 'http://localhost:3000/#/home';
-      } else {
-        window.location.href = 'http://localhost:3000/#/questions';
-      }
+      window.location.href = 'http://localhost:3000/#/home';
       window.location.reload();
     }
   };

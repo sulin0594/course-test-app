@@ -47,4 +47,12 @@ const getUserId = () => {
   return getUserInfo()["userId"];
 }
 
-export { client, getUserInfo, getUserId }
+const getUserRole = () => {
+  return getUserInfo()["role"];
+}
+
+const getUserName = () => {
+  return getUserInfo()["username"];
+}
+
+export { client, getUserInfo, getUserId, getUserRole, getUserName }

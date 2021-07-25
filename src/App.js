@@ -5,35 +5,54 @@ import Home from './pages/home'
 import QuestionCreation from './pages/questions';
 import QuestionTest from './pages/test';
 import Result from './pages/result';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import Tests from './pages/tests'
+import { Layout, Menu, Popover } from 'antd';
+import { getUserRole } from './api/base';
+import { UserOutlined, BellOutlined, AppstoreAddOutlined } from '@ant-design/icons'
 
 const { Header, Content, Footer } = Layout;
 
 
 function App() {
+  const logout = () => {
+    window.sessionStorage.removeItem("accessToken");
+    window.location.href = 'http://localhost:3000';
+    window.location.reload();
+  };
+
   return (
     <Layout className="layout">
+      <Header>
+        <div>
+          <div className="logo">
+            <div className="logoImg"></div>
+            <span>Hongkong University</span>
+          </div>
+          <div className="headerMenus">
+            <div>
+              <Popover placement="bottom" title={<span>{getUserRole()}</span>} content={<a onClick={logout}>Logout</a>} trigger="click">
+                <UserOutlined size="large" />
+              </Popover>
+            </div>
+            <div><BellOutlined size="large" /></div>
+            <div><AppstoreAddOutlined size="large" /></div>
+          </div>
+        </div>
+      </Header>
       <Router>
-        <Header>
-          <div className="logo" />
-          <Menu theme="light" mode="horizontal" defaultSelectedKeys={['0']}>
-            <Menu.Item key={'0'}><Link to="/home">Home</Link></Menu.Item>
-            <Menu.Item key={'1'}><Link to="/questions">Questions</Link></Menu.Item>
-            {/* <Menu.Item key={'2'}><Link to="about">About</Link></Menu.Item> */}
-          </Menu>
-        </Header>
-        <Content style={{ padding: '20px' }}>
+        <Content style={{ padding: '0px' }}>
           <div className="site-layout-content">
             <Switch>
               <Route path="/home" component={Home} />
               <Route path="/questions" component={QuestionCreation} />
+              <Route path="/tests" component={Tests} />
               <Route path="/test/:id" component={QuestionTest} />
               <Route path="/result/:studentId/:questionId" component={Result} />
             </Switch>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>design by liyiying</Footer>
       </Router>
+      <Footer style={{ textAlign: 'center' }}>design by liyiying</Footer>
     </Layout>
   );
 }

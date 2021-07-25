@@ -1,0 +1,16 @@
+.tests .content {
+  padding: 30px;
+}
+
+.tests .header {
+  line-height: 60px;
+  padding-left: 10px;
+  font-size: 40px;
+  box-shadow: 0 1px 3px #bfbfbf;
+}
+
+.tests .title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
