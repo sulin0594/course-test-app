@@ -16,7 +16,7 @@ function Home() {
       <div className="home">
         <div className="content">
           <div className="todo">
-            <span>待处理事项: </span>
+            <span>Pending tasks: </span>
             <span>3</span>
             <div>
               xxxxxxxxxxxxxxxxxxxxxxx
@@ -28,7 +28,7 @@ function Home() {
           <div className="applications">
             <div className="app-title">
               <AppstoreAddOutlined />
-              <span>应用程序</span>
+              <span>Application</span>
             </div>
             <div className="apps">
               {getUserRole() === 'teacher' ?
@@ -36,31 +36,31 @@ function Home() {
                   <div className="app">
                     <Link to="/questions">
                       <FormOutlined />
-                      <div>出题</div>
+                      <div>New</div>
                     </Link>
                   </div>
                   <div className="app">
                     <Link to="/tests">
                       <CopyOutlined />
-                      <div>测试</div>
+                      <div>Test</div>
                     </Link>
                   </div>
                   <div className="app">
                     <Link to="/questions">
                       <SnippetsOutlined />
-                      <div>结果</div>
+                      <div>Result</div>
                     </Link>
                   </div>
                   <div className="app">
                     <Link to="/questions">
                       <FieldTimeOutlined />
-                      <div>安排</div>
+                      <div>Arrangement</div>
                     </Link>
                   </div>
                   <div className="app">
                     <Link to="/questions">
                       <IdcardOutlined />
-                      <div>我的</div>
+                      <div>Mine</div>
                     </Link>
                   </div>
                 </>
@@ -69,25 +69,25 @@ function Home() {
                   <div className="app">
                     <Link to="/test">
                       <HighlightOutlined />
-                      <div>做题</div>
+                      <div>Question</div>
                     </Link>
                   </div>
                   <div className="app">
                     <Link to="/result">
                       <SnippetsOutlined />
-                      <div>成绩</div>
+                      <div>Score</div>
                     </Link>
                   </div>
                   <div className="app">
                     <Link to="/questions">
                       <FieldTimeOutlined />
-                      <div>安排</div>
+                      <div>Arrangement</div>
                     </Link>
                   </div>
                   <div className="app">
                     <Link to="/questions">
                       <IdcardOutlined />
-                      <div>我的</div>
+                      <div>Mine</div>
                     </Link>
                   </div>
                 </>

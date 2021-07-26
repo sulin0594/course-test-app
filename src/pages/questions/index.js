@@ -139,8 +139,8 @@ class QuestionCreation extends Component {
             </Form.Item>
           </Form>
         </div>
-        <Modal title="创建成功" okText="下一道题" visible={this.state.isModalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
-          <p>上传题目成功, 是否继续新建题目?</p>
+        <Modal title="The question has been set successfully !" okText="Next question" visible={this.state.isModalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
+          <p>The question has been set successfully, do you want to set a new question?</p>
         </Modal>
       </div >
     )

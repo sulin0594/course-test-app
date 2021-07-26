@@ -26,7 +26,7 @@ function App() {
         <div>
           <div className="logo">
             <div className="logoImg"></div>
-            <span>Hongkong University</span>
+            <span>The University of Hong Kong </span>
           </div>
           <div className="headerMenus">
             <div>
