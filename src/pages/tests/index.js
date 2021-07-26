@@ -40,11 +40,11 @@ class Tests extends Component {
   handleOk = async () => {
     const { courseId, newTestName, dateRange, selectQuestions } = this.state;
     const resp = await TestsApi.newTest({
-      courseId: new Number(courseId),
+      courseId: Number(courseId),
       name: newTestName,
       beginDate: dateRange[0].format('YYYY-MM-DD 00:00:00'),
       endDate: dateRange[1].format('YYYY-MM-DD 23:59:59'),
-      questions: selectQuestions.map((v) => { return { id: new Number(v) } }),
+      questions: selectQuestions.map((v) => { return { id: v } }),
     });
     console.log(resp);
     this.setState({ isModalVisible: false });
