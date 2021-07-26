@@ -52,13 +52,13 @@ function Home() {
                     </Link>
                   </div>
                   <div className="app">
-                    <Link to="/questions">
+                    <Link to="/home">
                       <FieldTimeOutlined />
                       <div>安排</div>
                     </Link>
                   </div>
                   <div className="app">
-                    <Link to="/questions">
+                    <Link to="/home">
                       <IdcardOutlined />
                       <div>我的</div>
                     </Link>
@@ -67,7 +67,7 @@ function Home() {
                 :
                 <>
                   <div className="app">
-                    <Link to="/test">
+                    <Link to="/tests">
                       <HighlightOutlined />
                       <div>做题</div>
                     </Link>
@@ -79,13 +79,13 @@ function Home() {
                     </Link>
                   </div>
                   <div className="app">
-                    <Link to="/questions">
+                    <Link to="/home">
                       <FieldTimeOutlined />
                       <div>安排</div>
                     </Link>
                   </div>
                   <div className="app">
-                    <Link to="/questions">
+                    <Link to="/home">
                       <IdcardOutlined />
                       <div>我的</div>
                     </Link>

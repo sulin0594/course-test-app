@@ -1,14 +1,14 @@
 import './App.css';
-import { Component } from 'react'
 import { HashRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { Layout, Popover } from 'antd';
+import { getUserRole } from './api/base';
+import { UserOutlined, BellOutlined, AppstoreAddOutlined } from '@ant-design/icons'
 import Home from './pages/home'
 import QuestionCreation from './pages/questions';
 import QuestionTest from './pages/test';
 import Result from './pages/result';
 import Tests from './pages/tests'
-import { Layout, Menu, Popover } from 'antd';
-import { getUserRole } from './api/base';
-import { UserOutlined, BellOutlined, AppstoreAddOutlined } from '@ant-design/icons'
+import TestQuestions from './pages/testQuestions';
 
 const { Header, Content, Footer } = Layout;
 
@@ -46,8 +46,9 @@ function App() {
               <Route path="/home" component={Home} />
               <Route path="/questions" component={QuestionCreation} />
               <Route path="/tests" component={Tests} />
-              <Route path="/test/:id" component={QuestionTest} />
-              <Route path="/result/:studentId/:questionId" component={Result} />
+              <Route path="/test/:id" component={TestQuestions} />
+              <Route path="/question/:id" component={QuestionTest} />
+              <Route path="/result/:questionId" component={Result} />
             </Switch>
           </div>
         </Content>

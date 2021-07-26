@@ -1,17 +1,8 @@
-import { client } from "./base";
+import { client, getUserId } from "./base";
 
-export class QuestionApi {
-  static createQuestion = async (question) => {
-    return client.post('/questions', question)
-      .then(function (response) {
-        return response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-  static getQuestion = async (questionId) => {
-    return client.get(`/questions/${questionId}`)
+export class TestsApi {
+  static queryTests = async (courseId) => {
+    return client.get(`/tests`, { params: { courseId } })
       .then(function (response) {
         return response.data;
       })
@@ -20,8 +11,18 @@ export class QuestionApi {
       });
   }
 
-  static findAllByCourseId = async (courseId) => {
-    return client.get(`/questions`, { params: { courseId } })
+  static getTest = async (testid) => {
+    return client.get(`/tests/${testid}`)
+      .then(function (response) {
+        return response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  static newTest = async (test) => {
+    return client.post(`/tests`, test)
       .then(function (response) {
         return response.data;
       })

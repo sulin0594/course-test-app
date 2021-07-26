@@ -1,7 +1,9 @@
 import { Button, Modal } from 'antd';
+import { LoadingOutlined, PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { Component } from 'react';
 import Drawer from '../../components/layer/drawer'
 import { QuestionApi, AnswerApi, FileApi } from '../../api';
+import { getUserId } from '../../api/base';
 import { Row, Col } from 'antd';
 
 import './test.css';
@@ -17,7 +19,8 @@ class Result extends Component {
   };
 
   componentDidMount = async () => {
-    const { questionId, studentId } = this.props.match.params;
+    const { questionId } = this.props.match.params;
+    const studentId = getUserId();
     await this.loadQuestion(questionId);
     await this.loadAnswer(studentId, questionId);
     await this.setState({ questionId, studentId });
@@ -30,17 +33,23 @@ class Result extends Component {
 
   loadAnswer = async (studentId, questionId) => {
     const resp = await AnswerApi.getAnswer(studentId, questionId);
+    if (!resp.data) {
+      return this.back();
+    }
     this.setState({ answer: resp.data });
+  }
+
+  back = async () => {
+    this.props.history.goBack();
   }
 
   render() {
     const { content, courseId, questionImage, questionImageAnswer } = this.state.question;
     const { answerImage, correct } = this.state.answer;
     return (
-      <div className="test">
-        <div className="logo">
-          <div className="logo-image"></div>
-          <h2 className="header">The University of Hong Kong</h2>
+      <div className="result">
+        <div className="header">
+          <ArrowLeftOutlined onClick={this.back} />
         </div>
         <div>
           <div className="title">问题作答结果: </div>

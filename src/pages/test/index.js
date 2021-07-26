@@ -1,4 +1,5 @@
 import { Button, Modal } from 'antd';
+import { LoadingOutlined, PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { Component } from 'react';
 import Drawer from '../../components/layer/drawer'
 import { QuestionApi, AnswerApi, FileApi } from '../../api';
@@ -27,7 +28,6 @@ class QuestionTest extends Component {
   }
 
   onFinish = async (values) => {
-
     const answerImageResp = await FileApi.uploadFileData({ data: this.drawerRef.stageRef.toDataURL() });
     const resp = await AnswerApi.answer(studentId, this.state.questionId, {
       answerImage: answerImageResp?.fileDownloadUri
@@ -48,17 +48,19 @@ class QuestionTest extends Component {
   };
 
   navigateToResultPage = async (studentId, questionId) => {
-    this.props.history.push(`/result/${studentId}/${questionId}`);
+    this.props.history.push(`/result/${questionId}`);
   }
 
+  back = async () => {
+    this.props.history.goBack();
+  }
 
   render() {
     const { content, questionImage, courseId } = this.state;
     return (
       <div className="test">
-        <div className="logo">
-          <div className="logo-image"></div>
-          <h2 className="header">The University of Hong Kong</h2>
+        <div className="header">
+          <ArrowLeftOutlined onClick={this.back} />
         </div>
         <div>
           <div className="title">请作答以下问题: </div>
