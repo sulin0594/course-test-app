@@ -45,7 +45,7 @@ class Result extends Component {
 
   render() {
     const { content, courseId, questionImage, questionImageAnswer } = this.state.question;
-    const { answerImage, correct } = this.state.answer;
+    const { answerImage, correct, score } = this.state.answer;
     return (
       <div className="result">
         <div className="header">
@@ -107,7 +107,7 @@ class Result extends Component {
           </Row> */}
           <Row style={{ marginBottom: '10px' }}>
             <Col span={4} style={{ textAlign: 'right', paddingRight: '30px' }}>系统判定结果: </Col>
-            <Col span={4}> {correct ? '正确' : '错误'} </Col>
+            <Col span={4}> {score} </Col>
           </Row>
         </div>
       </div >
