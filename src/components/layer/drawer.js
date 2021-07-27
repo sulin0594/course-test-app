@@ -1,6 +1,7 @@
 import { Component } from 'react';
 // eslint-disable-next-line
 import { Stage, Layer, Line, Text, Image } from 'react-konva';
+import { Popover } from 'antd';
 
 import './drawer.css';
 
@@ -12,13 +13,14 @@ class Drawer extends Component {
     tool: 'pen',
     lines: [],
     isDrawing: false,
+    color: '#FF0000',
   }
   stageRef;
 
   handleMouseDown = (e) => {
     this.setState({ isDrawing: true })
     const pos = e.target.getStage().getPointerPosition();
-    const lines = [...this.state.lines, { tool: this.state.tool, points: [pos.x, pos.y] }];
+    const lines = [...this.state.lines, { tool: this.state.tool, points: [pos.x, pos.y], color: this.state.color }];
     this.setState({ lines: lines })
   };
 
@@ -65,6 +67,20 @@ class Drawer extends Component {
     this.setState({ lines: next.lines })
   };
 
+  selectColor = (color) => {
+    this.setState({ color: color });
+  }
+
+  getColors = () => {
+    let colors = [];
+    this.state.lines.forEach((v) => {
+      if (colors.indexOf(v.color) < 0) {
+        colors.push(v.color);
+      }
+    });
+    return colors;
+  }
+
   render() {
     const { lines, tool } = this.state;
     return (
@@ -79,6 +95,15 @@ class Drawer extends Component {
             <option value="pen">Pen</option>
             <option value="eraser">Eraser</option>
           </select>
+          <Popover placement="bottom" content={
+            <>
+              <div className="colorPickerItem" onClick={this.selectColor.bind(this, '#FF0000')} style={this.state.stroke === '#FF0000' ? { backgroundColor: '#FF0000', border: '2px solid rgb(0 0 0 / 85%)' } : { backgroundColor: '#FF0000' }}></div>
+              <div className="colorPickerItem" onClick={this.selectColor.bind(this, '#00FF00')} style={this.state.stroke === '#00FF00' ? { backgroundColor: '#00FF00', border: '2px solid rgb(0 0 0 / 85%)' } : { backgroundColor: '#00FF00' }}></div>
+              <div className="colorPickerItem" onClick={this.selectColor.bind(this, '#0000FF')} style={this.state.stroke === '#0000FF' ? { backgroundColor: '#0000FF', border: '2px solid rgb(0 0 0 / 85%)' } : { backgroundColor: '#0000FF' }}></div>
+            </>}
+            trigger="click">
+            <div style={{ float: 'right', backgroundColor: `${this.state.color}`, width: '32px', height: '16px', margin: '6px 3px' }}></div>
+          </Popover>
           <button text="undo" onClick={this.handleUndo}>undo</button>
           <button text="redo" x={40} onClick={this.handleRedo}>redo</button>
         </div>
@@ -101,7 +126,7 @@ class Drawer extends Component {
               <Line
                 key={i}
                 points={line.points}
-                stroke="#df4b26"
+                stroke={line.color}
                 strokeWidth={5}
                 tension={0.5}
                 lineCap="round"

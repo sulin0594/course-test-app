@@ -16,8 +16,8 @@ function Home() {
       <div className="home">
         <div className="content">
           <div className="todo">
-            <span>Pending tasks: </span>
-            <span>3</span>
+            <span style={{ fontSize: '24px', fontWeight: '600' }}>Pending tasks: </span>
+            <span style={{ fontSize: '24px', fontWeight: '600' }}>3</span>
             <div>
               xxxxxxxxxxxxxxxxxxxxxxx
             </div>

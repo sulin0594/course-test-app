@@ -50,7 +50,8 @@ class QuestionCreation extends Component {
       courseId: new Number(values.course),
       content: values.content,
       questionImage: this.state.questionImage,
-      questionImageAnswer: answerImageResp?.fileDownloadUri
+      questionImageAnswer: answerImageResp?.fileDownloadUri,
+      colors: this.drawerRef.getColors().join()
     });
     if (resp.success) {
       // this.navigateToTestPage(resp.data);
